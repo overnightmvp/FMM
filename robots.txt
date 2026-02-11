@@ -1,0 +1,68 @@
+# Fort Myers Labor Only Movers — robots.txt
+# AI crawler access explicitly granted for competitive visibility advantage
+
+# ===== AI CRAWLERS — ALLOW ALL =====
+# Granting explicit access ensures content is indexed for AI-powered search
+# (ChatGPT, Claude, Perplexity, Google AI Overviews, Bing Copilot)
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: Omgilibot
+Allow: /
+
+# ===== SCRAPERS — BLOCK =====
+User-agent: Bytespider
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# ===== DEFAULT — ALLOW ALL =====
+User-agent: *
+Allow: /
+
+# ===== SITEMAP =====
+Sitemap: https://fortmyerslaboronlymovers.com/sitemap.xml
