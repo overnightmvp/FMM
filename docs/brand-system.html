@@ -45,9 +45,8 @@
     /* Brand mark / wordmark display */
     .wordmark-row {
       display: flex;
-      gap: 40px;
-      align-items: flex-start;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 24px;
       margin-bottom: 32px;
     }
     .wordmark-box {
@@ -56,6 +55,7 @@
       border-radius: 12px;
       padding: 32px 40px;
       text-align: center;
+      width: 100%;
     }
     .wordmark-box label {
       display: block;
@@ -175,7 +175,8 @@
     @media (max-width: 700px) {
       .swatches-grid { grid-template-columns: repeat(2, 1fr); }
       .svg-grid { grid-template-columns: 1fr; }
-      .wordmark-row { flex-direction: column; }
+      .svg-card { overflow: hidden; }
+      .svg-card .code-block { white-space: pre-wrap; word-break: break-all; }
     }
   </style>
 </head>
@@ -198,7 +199,7 @@
       <div class="wordmark-row">
 
         <!-- Primary Wordmark -->
-        <div class="wordmark-box" style="flex:1;min-width:280px">
+        <div class="wordmark-box">
           <label>Primary Wordmark</label>
           <svg width="260" height="52" viewBox="0 0 260 52" xmlns="http://www.w3.org/2000/svg">
             <text x="0" y="38" font-family="Inter, sans-serif" font-weight="800" font-size="32" fill="#1e3a8a">Fort Myers</text>
@@ -208,7 +209,7 @@
         </div>
 
         <!-- Secondary Treatment -->
-        <div class="wordmark-box" style="flex:1;min-width:280px">
+        <div class="wordmark-box">
           <label>Secondary Treatment (with tagline)</label>
           <svg width="260" height="68" viewBox="0 0 260 68" xmlns="http://www.w3.org/2000/svg">
             <text x="0" y="34" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="#1e3a8a">Fort Myers</text>
@@ -599,48 +600,77 @@ for website hero section. Clean, minimal."</div>
         <div class="code-block">
 <button class="copy-btn" onclick="copyCode(this)">Copy</button>MIDJOURNEY v6:
 /imagine prompt: clean professional moving company social media post,
-"From $300" in bold orange typography, Florida residential neighborhood
-background, sunny day, navy and orange brand colors, 1:1 format,
-real estate photography style --ar 1:1 --v 6
+"From $300" in bold orange #f97316 typography, Florida residential
+neighborhood background, sunny day, navy blue #1e3a8a and orange
+#f97316 brand colors, 1:1 format, editorial photography style
+--ar 1:1 --v 6 --style raw
+
+DALL-E 3:
+"Clean professional moving company social media graphic. Bold orange
+(#f97316) text 'From $300' centered. Florida residential neighborhood
+background, sunny day. Navy blue (#1e3a8a) and orange (#f97316) brand
+colors. Square format. Professional, modern."
 
 CANVA LAYOUT (text overlay on stock photo):
   Background:  Bright Florida home exterior (clear blue sky)
-  Top text:    "FORT MYERS MOVERS" — navy, Inter 800, uppercase
-  Center stat: "$300" — large orange, Inter 800
+  Top text:    "FORT MYERS MOVERS" — navy #1e3a8a, Inter 800, uppercase
+  Center stat: "$300" — large orange #f97316, Inter 800
   Subtitle:    "Labor-Only Moving · Licensed & Insured"
-  CTA pill:    "Book Online" — orange bg, white text, rounded</div>
+  CTA pill:    "Book Online" — orange #f97316 bg, white text, rounded
+
+IDEOGRAM:
+"Fort Myers Movers social post [navy blue #1e3a8a background]
+[orange #f97316 CTA] [From $300] [professional moving company]
+[Florida] [square format] [clean typography]"</div>
       </div>
 
       <div class="prompt-section">
         <div class="prompt-label">Google Display Ads</div>
         <div class="code-block">
 <button class="copy-btn" onclick="copyCode(this)">Copy</button>300×250 BANNER:
-"Clean orange and navy banner ad, bold headline 'Labor-Only Movers
-From $300', subtext 'Fort Myers · Cape Coral · Bonita Springs',
-orange CTA button 'Get Free Quote', professional moving company,
-300x250 pixels, white background"
+"Clean banner ad 300x250, white background, bold headline 'Labor-Only
+Movers From $300' in navy #1e3a8a, subtext 'Fort Myers · Cape Coral
+· Bonita Springs', orange #f97316 CTA button 'Get Free Quote',
+professional moving company, minimal design"
 
 728×90 LEADERBOARD:
-"Horizontal banner ad 728x90, navy background, white text 'Fort
-Myers Movers | From $300 | Same-Day Available', orange CTA button
-right side, minimal professional moving company branding"</div>
+"Horizontal banner 728x90, navy #1e3a8a background, white text 'Fort
+Myers Movers | From $300 | Same-Day Available', orange #f97316 CTA
+button right side, Inter bold typography, minimal professional"
+
+IDEOGRAM:
+"Display ad banner [navy #1e3a8a] [orange #f97316 CTA button]
+[Fort Myers Movers] [From $300] [professional moving company]
+[clean white background] [bold sans-serif] [300x250]"</div>
       </div>
 
       <div class="prompt-section">
-        <div class="prompt-label">Photography Brief (for photographer or stock search)</div>
+        <div class="prompt-label">Photography &amp; Photo-Realistic Images</div>
         <div class="code-block">
-<button class="copy-btn" onclick="copyCode(this)">Copy</button">SHOOT BRIEF:
-- 2-3 men in navy blue shirts or polos (matching brand color)
-- Bright Florida exterior setting, clear blue sky
-- Moving boxes, dollies, furniture blankets visible in frame
-- Professional, friendly expressions — not straining
-- Avoid: dark basements, rainy weather, cluttered chaos
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>MIDJOURNEY v6:
+/imagine prompt: professional moving crew 2-3 men in navy blue polos
+#1e3a8a, loading boxes into truck, bright Florida outdoor setting,
+clear blue sky, friendly professional expressions, moving blankets
+and dollies in frame, editorial photography style, warm sunlight
+--ar 16:9 --v 6 --style raw
 
-STOCK PHOTO SEARCH TERMS:
-"professional movers loading truck outdoor"
-"moving company crew Florida sunny"
-"labor moving service two men"
-"residential movers loading boxes outside"</div>
+DALL-E 3:
+"Professional photo of 2-3 movers in navy blue (#1e3a8a) polo shirts
+loading furniture into a moving truck. Bright Florida residential
+neighborhood, clear blue sky, warm sunlight. Moving boxes, dollies,
+and furniture blankets visible. Friendly, professional expressions.
+Photo-realistic, editorial style. Wide shot."
+
+IDEOGRAM:
+"Moving company crew loading truck [professional photography]
+[navy blue uniforms #1e3a8a] [Florida outdoor] [sunny day] [editorial]
+[wide shot] [photorealistic]"
+
+STOCK SEARCH:
+"professional movers loading truck outdoor Florida sunny"
+"moving company crew navy shirts residential"
+"labor movers two men boxes outside bright"
+"moving service team smiling daylight"</div>
       </div>
 
     </div>
