@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f97316">
   <title>Fort Myers Labor Only Movers — Load, Unload, Done. Starts at $300</title>
   <meta name="description" content="Professional labor-only moving in Fort Myers, FL. 2 movers · 3 hours · starts at $300. You bring the truck, we bring the muscle. Licensed, insured, 247+ 5-star reviews. Same-day available. Call (904) 479-8844.">
   <meta name="keywords" content="labor only movers fort myers, moving labor fort myers fl, load unload truck fort myers, moving help fort myers, movers fort myers fl">
@@ -180,12 +181,35 @@
 </section>
 
 <!-- ===== TRUST BAR ===== -->
-<div class="trust-bar" role="complementary">
-  <p>
-    <strong>4.9★ from 247+ verified Thumbtack reviews</strong> &nbsp;·&nbsp;
-    Fort Myers' #1 Labor-Only Moving Service &nbsp;·&nbsp;
-    15+ Years Experience &nbsp;·&nbsp; 10,000+ Moves Completed
-  </p>
+<div class="trust-bar" role="complementary" aria-label="Trust indicators">
+  <div class="trust-marquee">
+    <div class="trust-marquee-track">
+      <span class="trust-marquee-item">⭐ 4.9★ · 247+ Verified Thumbtack Reviews</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">🏆 Fort Myers' #1 Labor-Only Mover</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">📅 15+ Years Experience</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">💪 10,000+ Moves Completed</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">✅ Licensed &amp; Insured</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">📞 Same-Day Available · (904) 479-8844</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">⭐ 4.9★ · 247+ Verified Thumbtack Reviews</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">🏆 Fort Myers' #1 Labor-Only Mover</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">📅 15+ Years Experience</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">💪 10,000+ Moves Completed</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">✅ Licensed &amp; Insured</span>
+      <span class="trust-item-sep">·</span>
+      <span class="trust-marquee-item">📞 Same-Day Available · (904) 479-8844</span>
+      <span class="trust-item-sep">·</span>
+    </div>
+  </div>
 </div>
 
 <!-- ===== HOW IT WORKS ===== -->
@@ -198,20 +222,26 @@
     </div>
     <div class="steps-grid">
       <div class="step-card fade-up">
-        <div class="step-icon">📋</div>
-        <div class="step-number">1</div>
+        <div class="step-card-header">
+          <div class="step-number">1</div>
+          <div class="step-icon">📋</div>
+        </div>
         <h3>Get Your Quote</h3>
         <p>Fill in your home size below. See your exact price instantly — no surprises, no bidding. Only $75 holds your date.</p>
       </div>
       <div class="step-card fade-up">
-        <div class="step-icon">🚛</div>
-        <div class="step-number">2</div>
+        <div class="step-card-header">
+          <div class="step-number">2</div>
+          <div class="step-icon">🚛</div>
+        </div>
         <h3>We Show Up On Time</h3>
         <p>2–3 background-checked professionals arrive with all equipment — dollies, furniture blankets, moving straps. You bring the truck or container.</p>
       </div>
       <div class="step-card fade-up">
-        <div class="step-icon">✅</div>
-        <div class="step-number">3</div>
+        <div class="step-card-header">
+          <div class="step-number">3</div>
+          <div class="step-icon">✅</div>
+        </div>
         <h3>You're Done</h3>
         <p>We load, move, and unload everything safely. Pay the balance on move day. No hidden fees, no surprises.</p>
       </div>
@@ -321,7 +351,8 @@
       <p>Here's exactly what happens when you book with Fort Myers Labor Only Movers.</p>
     </div>
 
-    <div class="journey-timeline fade-up">
+    <div class="journey-timeline-wrap fade-up">
+    <div class="journey-timeline">
       <div class="journey-step">
         <div class="journey-dot">📋</div>
         <p class="journey-step-num">Step 1</p>
@@ -358,6 +389,7 @@
         <p class="journey-step-title">Pay &amp; You're Done</p>
         <p class="journey-step-desc">Balance due after the job is complete. No surprises, no hidden fees.</p>
       </div>
+    </div>
     </div>
 
     <div class="text-center mt-48 fade-up">
@@ -605,6 +637,7 @@
       <div class="form-step" id="step-2">
         <p class="step-title">Customize Your Quote</p>
         <p class="step-subtitle">Step 2 of 3 · Add optional services (all optional)</p>
+        <button type="button" class="step-back-link" id="back-2">← Back to Home Size</button>
         <div class="lead-form">
           <div class="addons">
             <div class="addon-item" data-addon="truck">
@@ -654,8 +687,7 @@
           </div>
           <p class="deposit-note">Only <strong>$75 deposit</strong> today · Balance on move day</p>
           <div class="step-nav">
-            <button type="button" class="btn btn-secondary" id="back-2">← Back</button>
-            <button type="button" class="btn btn-primary" id="next-2" style="flex:1;font-size:var(--font-size-lg);padding:16px 24px">Book This Price →</button>
+            <button type="button" class="btn btn-primary" id="next-2" style="width:100%;font-size:var(--font-size-lg);padding:16px 24px">Book This Price →</button>
           </div>
         </div>
       </div>
@@ -664,6 +696,7 @@
       <div class="form-step" id="step-3">
         <p class="step-title">Almost Done!</p>
         <p class="step-subtitle">Step 3 of 3 · We'll call you back within 10 minutes</p>
+        <button type="button" class="step-back-link" id="back-3">← Back to Add-Ons</button>
         <form class="lead-form" id="multistep-form" novalidate>
           <div class="form-row">
             <div class="form-group">
@@ -681,8 +714,8 @@
               <input type="date" id="move-date" name="move_date" required>
             </div>
             <div class="form-group">
-              <label for="moving-from">Moving From (City) <span class="required">*</span></label>
-              <input type="text" id="moving-from" name="moving_from" placeholder="Fort Myers, FL" required>
+              <label for="moving-from">Pickup Address <span class="required">*</span></label>
+              <input type="text" id="moving-from" name="moving_from" placeholder="123 Main St, Fort Myers" required>
             </div>
           </div>
           <details style="margin-bottom:16px">
@@ -692,8 +725,7 @@
             </div>
           </details>
           <div class="step-nav">
-            <button type="button" class="btn btn-secondary" id="back-3">← Back</button>
-            <button type="submit" class="btn btn-primary btn-primary-xl" style="flex:1">GET MY FREE QUOTE NOW</button>
+            <button type="submit" class="btn btn-primary btn-primary-xl" style="width:100%">GET MY FREE QUOTE NOW</button>
           </div>
           <div class="form-reassurance" style="margin-top:16px">
             <span><span class="tick">✅</span> No obligation</span>
@@ -740,6 +772,8 @@
         <a href="../content-pages/cape-coral-movers.html">Cape Coral</a>
         <a href="../content-pages/bonita-springs-movers.html">Bonita Springs</a>
         <a href="../content-pages/naples-moving-help.html">Naples</a>
+        <a href="#service-areas">Estero</a>
+        <a href="#service-areas">Lehigh Acres</a>
       </div>
     </div>
     <div class="footer-bottom">
