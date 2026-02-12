@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fort Myers Movers — Brand System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f3f4f6; color: #1f2937; line-height: 1.6; }
+
+    /* Page header */
+    .page-header {
+      background: #1e3a8a;
+      color: #fff;
+      padding: 48px 32px;
+      text-align: center;
+    }
+    .page-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .page-header p { color: rgba(255,255,255,0.75); font-size: 1rem; }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+    /* Section cards */
+    .section-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: #1e3a8a;
+      color: #fff;
+      padding: 20px 32px;
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .section-body { padding: 32px; }
+
+    /* Brand mark / wordmark display */
+    .wordmark-row {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .wordmark-box {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .wordmark-box label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #6b7280;
+      margin-bottom: 16px;
+    }
+
+    /* Colour swatches */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .swatch-card { text-align: center; }
+    .swatch-square {
+      width: 100%;
+      height: 80px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .swatch-name { font-weight: 700; font-size: 0.75rem; color: #1f2937; margin-bottom: 2px; }
+    .swatch-var { font-size: 0.65rem; color: #6b7280; margin-bottom: 2px; font-family: monospace; }
+    .swatch-hex { font-size: 0.75rem; font-weight: 600; color: #374151; }
+
+    /* Rules list */
+    .rules { margin-top: 20px; }
+    .rule { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 0.875rem; }
+    .rule-do { color: #16a34a; font-weight: 700; flex-shrink: 0; }
+    .rule-dont { color: #dc2626; font-weight: 700; flex-shrink: 0; }
+
+    /* Typography samples */
+    .type-row { border-bottom: 1px solid #e5e7eb; padding: 20px 0; }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta { font-size: 0.75rem; color: #6b7280; font-family: monospace; margin-bottom: 8px; }
+
+    /* Font scale table */
+    .token-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 0.875rem; }
+    .token-table th { background: #f9fafb; padding: 10px 16px; text-align: left; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #6b7280; border-bottom: 2px solid #e5e7eb; }
+    .token-table td { padding: 10px 16px; border-bottom: 1px solid #f3f4f6; }
+    .token-table tr:last-child td { border-bottom: none; }
+    .mono { font-family: monospace; color: #1e3a8a; font-size: 0.8rem; }
+
+    /* SVG elements grid */
+    .svg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .svg-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; text-align: center; }
+    .svg-preview { margin-bottom: 16px; }
+    .svg-name { font-weight: 700; font-size: 0.875rem; margin-bottom: 12px; color: #1e3a8a; }
+
+    /* Code blocks */
+    .code-block {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 10px;
+      padding: 20px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: 12px;
+      position: relative;
+      white-space: pre;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #e2e8f0;
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+    /* Prompt sections */
+    .prompt-section { margin-bottom: 28px; }
+    .prompt-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f97316;
+      margin-bottom: 8px;
+    }
+
+    /* Usage rules box */
+    .usage-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    .usage-box h4 { font-size: 0.875rem; font-weight: 700; color: #9a3412; margin-bottom: 12px; }
+    .usage-box li { font-size: 0.875rem; margin-bottom: 6px; margin-left: 16px; color: #7c2d12; }
+
+    /* Fonts embed box */
+    .font-embed { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; margin-top: 24px; }
+    .font-embed h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; margin-bottom: 12px; }
+
+    /* Print */
+    @media print {
+      body { background: #fff; }
+      .section-card { box-shadow: none; border: 1px solid #e5e7eb; break-inside: avoid; }
+      .copy-btn { display: none; }
+    }
+
+    @media (max-width: 700px) {
+      .swatches-grid { grid-template-columns: repeat(2, 1fr); }
+      .svg-grid { grid-template-columns: 1fr; }
+      .wordmark-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Fort Myers Movers — Brand System</h1>
+  <p>Reference guide for designers and developers · Open in browser or print to PDF</p>
+</div>
+
+<div class="container">
+
+  <!-- ============================================================
+       1. BRAND IDENTITY
+       ============================================================ -->
+  <div class="section-card">
+    <div class="section-header">1. Brand Identity</div>
+    <div class="section-body">
+
+      <div class="wordmark-row">
+
+        <!-- Primary Wordmark -->
+        <div class="wordmark-box" style="flex:1;min-width:280px">
+          <label>Primary Wordmark</label>
+          <svg width="260" height="52" viewBox="0 0 260 52" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="38" font-family="Inter, sans-serif" font-weight="800" font-size="32" fill="#1e3a8a">Fort Myers</text>
+            <text x="0" y="38" font-family="Inter, sans-serif" font-weight="800" font-size="32" fill="#f97316" dx="176">Movers</text>
+            <rect x="0" y="46" width="260" height="3" rx="1.5" fill="#f97316" opacity="0.4"/>
+          </svg>
+        </div>
+
+        <!-- Secondary Treatment -->
+        <div class="wordmark-box" style="flex:1;min-width:280px">
+          <label>Secondary Treatment (with tagline)</label>
+          <svg width="260" height="68" viewBox="0 0 260 68" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="34" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="#1e3a8a">Fort Myers</text>
+            <text x="0" y="34" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="#f97316" dx="154">Movers</text>
+            <rect x="0" y="42" width="260" height="2" rx="1" fill="#f97316" opacity="0.3"/>
+            <text x="0" y="62" font-family="Inter, sans-serif" font-weight="600" font-size="13" fill="#6b7280" letter-spacing="0.02em">Labor Only · Licensed &amp; Insured</text>
+          </svg>
+        </div>
+
+        <!-- Brand Mark -->
+        <div class="wordmark-box">
+          <label>Brand Mark (icon only)</label>
+          <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1e3a8a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <!-- Box body -->
+            <rect x="8" y="24" width="48" height="32" rx="2"/>
+            <!-- Left flap -->
+            <path d="M8 24 L32 14"/>
+            <!-- Right flap -->
+            <path d="M56 24 L32 14"/>
+            <!-- Center fold line -->
+            <line x1="32" y1="14" x2="32" y2="24"/>
+            <!-- Handle lines -->
+            <line x1="22" y1="40" x2="42" y2="40"/>
+          </svg>
+        </div>
+
+      </div>
+
+      <div class="usage-box">
+        <h4>Logo Usage Rules</h4>
+        <ul>
+          <li>Minimum size: 120px wide for wordmark, 32px for brand mark</li>
+          <li>Clear space: equal to cap-height on all sides (approx 16px at standard size)</li>
+          <li>Never stretch, rotate, recolor, or add drop shadows to the wordmark</li>
+          <li>On dark backgrounds: use white wordmark with orange "Movers" only</li>
+          <li>On colored backgrounds: use full white version only</li>
+        </ul>
+      </div>
+
+      <div class="code-block" style="margin-top:24px">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button># EXPORT INSTRUCTIONS
+# Copy the SVG markup from view-source, then:
+# 1. Paste into Figma (File → Import) or Inkscape
+# 2. Export as PNG: 2x (retina, e.g. 480×104) and 1x (240×52)
+# 3. Favicon: export brand mark SVG at 32×32 and 16×16
+
+# MIDJOURNEY v6 prompt (wordmark):
+/imagine prompt: minimalist wordmark logo "Fort Myers Movers",
+moving company, Inter 800 bold font, navy blue #1e3a8a with orange
+accent #f97316, clean professional, white background, vector style,
+no shadows --ar 3:1 --v 6 --style raw
+
+# DALL-E 3 prompt:
+"A clean minimalist logo for 'Fort Myers Movers'. Navy blue (#1e3a8a)
+bold wordmark, Inter font. Orange (#f97316) accent underline.
+White background. No gradients or shadows. Vector style."
+
+# IDEOGRAM prompt:
+"Fort Myers Movers [wordmark logo] [moving company] [navy blue and
+orange] [minimalist] [professional] [white background]"</div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       2. COLOUR SYSTEM
+       ============================================================ -->
+  <div class="section-card">
+    <div class="section-header">2. Colour System</div>
+    <div class="section-body">
+
+      <div class="swatches-grid">
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#1e3a8a"></div>
+          <div class="swatch-name">Primary</div>
+          <div class="swatch-var">--color-primary</div>
+          <div class="swatch-hex">#1e3a8a</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#1a3070"></div>
+          <div class="swatch-name">Primary Dark</div>
+          <div class="swatch-var">--color-primary-dark</div>
+          <div class="swatch-hex">#1a3070</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#f97316"></div>
+          <div class="swatch-name">Accent / CTA</div>
+          <div class="swatch-var">--color-accent</div>
+          <div class="swatch-hex">#f97316</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#ea6c0a"></div>
+          <div class="swatch-name">Accent Hover</div>
+          <div class="swatch-var">--color-accent-hover</div>
+          <div class="swatch-hex">#ea6c0a</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#16a34a"></div>
+          <div class="swatch-name">Trust</div>
+          <div class="swatch-var">--color-trust</div>
+          <div class="swatch-hex">#16a34a</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#dc2626"></div>
+          <div class="swatch-name">Warning</div>
+          <div class="swatch-var">--color-warning</div>
+          <div class="swatch-hex">#dc2626</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#1f2937"></div>
+          <div class="swatch-name">Text</div>
+          <div class="swatch-var">--color-text</div>
+          <div class="swatch-hex">#1f2937</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#6b7280"></div>
+          <div class="swatch-name">Text Muted</div>
+          <div class="swatch-var">--color-text-muted</div>
+          <div class="swatch-hex">#6b7280</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#e5e7eb"></div>
+          <div class="swatch-name">Border</div>
+          <div class="swatch-var">--color-border</div>
+          <div class="swatch-hex">#e5e7eb</div>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch-square" style="background:#f9fafb;border:1px solid #e5e7eb"></div>
+          <div class="swatch-name">BG Alt</div>
+          <div class="swatch-var">--color-bg-alt</div>
+          <div class="swatch-hex">#f9fafb</div>
+        </div>
+      </div>
+
+      <div class="rules">
+        <div class="rule"><span class="rule-do">DO</span> Use orange (#f97316) on ALL primary action buttons</div>
+        <div class="rule"><span class="rule-do">DO</span> Use white text on navy, orange, and green backgrounds</div>
+        <div class="rule"><span class="rule-do">DO</span> Use Primary navy for headers, nav, step numbers, and structural elements</div>
+        <div class="rule"><span class="rule-dont">DON'T</span> Use primary blue for CTA buttons (orange only)</div>
+        <div class="rule"><span class="rule-dont">DON'T</span> Use trust green for anything except the sticky trust bar background</div>
+        <div class="rule"><span class="rule-dont">DON'T</span> Mix accent orange with trust green in the same UI zone</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       3. TYPOGRAPHY
+       ============================================================ -->
+  <div class="section-card">
+    <div class="section-header">3. Typography System</div>
+    <div class="section-body">
+
+      <div class="type-row">
+        <div class="type-meta">Headline / H1 · Inter 800 · 2.5rem · lh 1.1 · #1e3a8a · .headline-hero</div>
+        <div style="font-size:2.5rem;font-weight:800;line-height:1.1;color:#1e3a8a;letter-spacing:-0.03em">Fort Myers' #1 Labor-Only Movers</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Section Heading / H2 · Inter 700 · 2rem · lh 1.2 · #1e3a8a · .headline-section</div>
+        <div style="font-size:2rem;font-weight:700;line-height:1.2;color:#1e3a8a;letter-spacing:-0.02em">How It Works</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Subheading / H3 · Inter 700 · 1.5rem · lh 1.3 · #1f2937</div>
+        <div style="font-size:1.5rem;font-weight:700;line-height:1.3;color:#1f2937">Get Your Free Quote</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Body Large · Inter 400 · 1.125rem · lh 1.6 · #1f2937 · .subheadline</div>
+        <div style="font-size:1.125rem;font-weight:400;line-height:1.6;color:#1f2937">Professional loading and unloading — you provide the truck, we provide 2 movers and all equipment.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Body Base · Inter 400 · 1rem · lh 1.6 · #1f2937</div>
+        <div style="font-size:1rem;font-weight:400;line-height:1.6;color:#1f2937">Only $75 deposit due at booking. Balance paid on move day. No hidden fees.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-meta">Label / Badge · Inter 700 · 0.75rem · uppercase · tracking 0.12em · #f97316 · .label</div>
+        <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#f97316">SIMPLE PROCESS</div>
+      </div>
+
+      <table class="token-table">
+        <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">--font-size-xs</td><td>0.75rem</td><td>Labels, fine print, badge text</td></tr>
+          <tr><td class="mono">--font-size-sm</td><td>0.875rem</td><td>Captions, meta, trust bar items</td></tr>
+          <tr><td class="mono">--font-size-base</td><td>1rem</td><td>Body copy (default)</td></tr>
+          <tr><td class="mono">--font-size-lg</td><td>1.125rem</td><td>Lead text, large body, header phone</td></tr>
+          <tr><td class="mono">--font-size-xl</td><td>1.25rem</td><td>Card titles, H4, step titles</td></tr>
+          <tr><td class="mono">--font-size-2xl</td><td>1.5rem</td><td>H3, section subheadings</td></tr>
+          <tr><td class="mono">--font-size-3xl</td><td>2rem</td><td>H2, section headings</td></tr>
+          <tr><td class="mono">--font-size-4xl</td><td>2.5rem</td><td>H1, hero headline</td></tr>
+          <tr><td class="mono">--font-size-5xl</td><td>3.5rem</td><td>Max hero size (via clamp)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="font-embed">
+        <h4>Google Fonts Embed Code</h4>
+        <div class="code-block" style="margin-top:0">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"&gt;</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       4. WEB-READY BRAND ELEMENTS
+       ============================================================ -->
+  <div class="section-card">
+    <div class="section-header">4. Web-Ready Brand Elements (SVG)</div>
+    <div class="section-body">
+      <p style="font-size:0.875rem;color:#6b7280;margin-bottom:24px">Copy any SVG code below → paste into Figma, Inkscape, or save as .svg file.</p>
+
+      <div class="svg-grid">
+
+        <!-- 1: Moving Box -->
+        <div class="svg-card">
+          <div class="svg-name">Moving Box Icon</div>
+          <div class="svg-preview">
+            <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#1e3a8a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="8" y="24" width="48" height="32" rx="2"/>
+              <path d="M8 24 L32 14"/>
+              <path d="M56 24 L32 14"/>
+              <line x1="32" y1="14" x2="32" y2="24"/>
+              <line x1="22" y1="40" x2="42" y2="40"/>
+            </svg>
+          </div>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;svg width="64" height="64" viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg"
+     fill="none" stroke="#1e3a8a"
+     stroke-width="2.5"
+     stroke-linecap="round"
+     stroke-linejoin="round"&gt;
+  &lt;rect x="8" y="24" width="48" height="32" rx="2"/&gt;
+  &lt;path d="M8 24 L32 14"/&gt;
+  &lt;path d="M56 24 L32 14"/&gt;
+  &lt;line x1="32" y1="14" x2="32" y2="24"/&gt;
+  &lt;line x1="22" y1="40" x2="42" y2="40"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+
+        <!-- 2: Truck Silhouette -->
+        <div class="svg-card">
+          <div class="svg-name">Truck Silhouette</div>
+          <div class="svg-preview">
+            <svg width="80" height="48" viewBox="0 0 80 48" xmlns="http://www.w3.org/2000/svg">
+              <!-- Truck body -->
+              <rect x="0" y="10" width="52" height="28" rx="2" fill="#1e3a8a"/>
+              <!-- Cab -->
+              <path d="M52 18 L52 38 L74 38 L74 26 L66 18 Z" fill="#1e3a8a"/>
+              <!-- Windshield -->
+              <path d="M54 20 L64 20 L72 28 L54 28 Z" fill="rgba(255,255,255,0.25)"/>
+              <!-- Wheels -->
+              <circle cx="16" cy="38" r="7" fill="#0f172a"/>
+              <circle cx="16" cy="38" r="3.5" fill="#6b7280"/>
+              <circle cx="62" cy="38" r="7" fill="#0f172a"/>
+              <circle cx="62" cy="38" r="3.5" fill="#6b7280"/>
+            </svg>
+          </div>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;svg width="80" height="48" viewBox="0 0 80 48"
+     xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;rect x="0" y="10" width="52" height="28" rx="2" fill="#1e3a8a"/&gt;
+  &lt;path d="M52 18 L52 38 L74 38 L74 26 L66 18 Z" fill="#1e3a8a"/&gt;
+  &lt;path d="M54 20 L64 20 L72 28 L54 28 Z"
+        fill="rgba(255,255,255,0.25)"/&gt;
+  &lt;circle cx="16" cy="38" r="7" fill="#0f172a"/&gt;
+  &lt;circle cx="16" cy="38" r="3.5" fill="#6b7280"/&gt;
+  &lt;circle cx="62" cy="38" r="7" fill="#0f172a"/&gt;
+  &lt;circle cx="62" cy="38" r="3.5" fill="#6b7280"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+
+        <!-- 3: Star Review Badge -->
+        <div class="svg-card">
+          <div class="svg-name">Star Review Badge</div>
+          <div class="svg-preview">
+            <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="32,6 39.1,24.5 58.8,24.5 43.8,35.5 49.9,54 32,43 14.1,54 20.2,35.5 5.2,24.5 24.9,24.5" fill="#f97316"/>
+            </svg>
+          </div>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;svg width="64" height="64" viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;polygon
+    points="32,6 39.1,24.5 58.8,24.5 43.8,35.5
+            49.9,54 32,43 14.1,54 20.2,35.5
+            5.2,24.5 24.9,24.5"
+    fill="#f97316"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+
+        <!-- 4: Shield Checkmark -->
+        <div class="svg-card">
+          <div class="svg-name">Shield Checkmark</div>
+          <div class="svg-preview">
+            <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 6 L54 14 L54 34 C54 46 32 58 32 58 C32 58 10 46 10 34 L10 14 Z" fill="#1e3a8a"/>
+              <polyline points="22,32 29,40 42,26" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;svg width="64" height="64" viewBox="0 0 64 64"
+     xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M32 6 L54 14 L54 34
+           C54 46 32 58 32 58
+           C32 58 10 46 10 34 L10 14 Z"
+        fill="#1e3a8a"/&gt;
+  &lt;polyline points="22,32 29,40 42,26"
+            fill="none" stroke="#ffffff"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+
+        <!-- 5: Location Pin -->
+        <div class="svg-card">
+          <div class="svg-name">Location Pin</div>
+          <div class="svg-preview">
+            <svg width="48" height="64" viewBox="0 0 48 64" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 2 C12.4 2 3 11.4 3 23 C3 38 24 62 24 62 C24 62 45 38 45 23 C45 11.4 35.6 2 24 2 Z" fill="#f97316"/>
+              <!-- House inside circle -->
+              <polygon points="24,10 14,20 34,20" fill="rgba(255,255,255,0.9)"/>
+              <rect x="18" y="20" width="12" height="9" rx="1" fill="rgba(255,255,255,0.9)"/>
+            </svg>
+          </div>
+          <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>&lt;svg width="48" height="64" viewBox="0 0 48 64"
+     xmlns="http://www.w3.org/2000/svg"&gt;
+  &lt;path d="M24 2 C12.4 2 3 11.4 3 23
+           C3 38 24 62 24 62
+           C24 62 45 38 45 23
+           C45 11.4 35.6 2 24 2 Z"
+        fill="#f97316"/&gt;
+  &lt;polygon points="24,10 14,20 34,20"
+           fill="rgba(255,255,255,0.9)"/&gt;
+  &lt;rect x="18" y="20" width="12" height="9"
+        rx="1" fill="rgba(255,255,255,0.9)"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       5. AI CREATIVE PROMPTS
+       ============================================================ -->
+  <div class="section-card">
+    <div class="section-header">5. AI Creative Generation Prompts</div>
+    <div class="section-body">
+
+      <div class="prompt-section">
+        <div class="prompt-label">Logo &amp; Brand Mark</div>
+        <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>MIDJOURNEY v6:
+/imagine prompt: minimalist wordmark logo "Fort Myers Movers",
+moving company, Inter 800 bold typography, navy blue #1e3a8a and
+orange #f97316 color palette, professional trustworthy, white
+background, vector style, no shadows, clean --ar 3:1 --v 6 --style raw
+
+DALL-E 3:
+"A clean minimalist logo for 'Fort Myers Movers' moving company.
+Navy blue (#1e3a8a) wordmark in bold sans-serif font with an orange
+(#f97316) accent line underneath. White background. Professional and
+trustworthy. No gradients or shadows. Vector illustration style."
+
+IDEOGRAM:
+"Fort Myers Movers [wordmark logo] [moving company] [navy blue and
+orange] [minimalist] [professional] [white background]"</div>
+      </div>
+
+      <div class="prompt-section">
+        <div class="prompt-label">Hero Background Texture</div>
+        <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>MIDJOURNEY v6:
+/imagine prompt: subtle geometric dot grid pattern, navy blue #1e3a8a
+dots on white background, minimal professional, suitable for website
+hero section, very light opacity, seamless tile --ar 16:9 --tile --v 6
+
+DALL-E 3:
+"Abstract geometric background pattern. Very subtle diagonal lines
+or dot grid in navy blue on white. Low opacity professional pattern
+for website hero section. Clean, minimal."</div>
+      </div>
+
+      <div class="prompt-section">
+        <div class="prompt-label">Social Media Creative (1:1)</div>
+        <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>MIDJOURNEY v6:
+/imagine prompt: clean professional moving company social media post,
+"From $300" in bold orange typography, Florida residential neighborhood
+background, sunny day, navy and orange brand colors, 1:1 format,
+real estate photography style --ar 1:1 --v 6
+
+CANVA LAYOUT (text overlay on stock photo):
+  Background:  Bright Florida home exterior (clear blue sky)
+  Top text:    "FORT MYERS MOVERS" — navy, Inter 800, uppercase
+  Center stat: "$300" — large orange, Inter 800
+  Subtitle:    "Labor-Only Moving · Licensed & Insured"
+  CTA pill:    "Book Online" — orange bg, white text, rounded</div>
+      </div>
+
+      <div class="prompt-section">
+        <div class="prompt-label">Google Display Ads</div>
+        <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button>300×250 BANNER:
+"Clean orange and navy banner ad, bold headline 'Labor-Only Movers
+From $300', subtext 'Fort Myers · Cape Coral · Bonita Springs',
+orange CTA button 'Get Free Quote', professional moving company,
+300x250 pixels, white background"
+
+728×90 LEADERBOARD:
+"Horizontal banner ad 728x90, navy background, white text 'Fort
+Myers Movers | From $300 | Same-Day Available', orange CTA button
+right side, minimal professional moving company branding"</div>
+      </div>
+
+      <div class="prompt-section">
+        <div class="prompt-label">Photography Brief (for photographer or stock search)</div>
+        <div class="code-block">
+<button class="copy-btn" onclick="copyCode(this)">Copy</button">SHOOT BRIEF:
+- 2-3 men in navy blue shirts or polos (matching brand color)
+- Bright Florida exterior setting, clear blue sky
+- Moving boxes, dollies, furniture blankets visible in frame
+- Professional, friendly expressions — not straining
+- Avoid: dark basements, rainy weather, cluttered chaos
+
+STOCK PHOTO SEARCH TERMS:
+"professional movers loading truck outdoor"
+"moving company crew Florida sunny"
+"labor moving service two men"
+"residential movers loading boxes outside"</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function copyCode(btn) {
+    const pre = btn.parentElement;
+    const text = pre.innerText.replace('Copy\n', '').replace('Copy', '');
+    navigator.clipboard.writeText(text.trim()).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>

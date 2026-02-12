@@ -5,7 +5,7 @@
 **Business:** Labor-only moving lead generation for Fort Myers, FL
 **Model:** $75/lead sold to FlexHelp, Inc. (Thumbtack Top Pro, 247+ reviews, 4.9★)
 **Tech:** Static HTML/CSS/JS (no build system) — AI-crawler visible from day 1
-**Deploy:** Netlify or direct to Hostinger
+**Deploy:** GitHub Pages (auto-deploys from `main`) · also works on Netlify
 **GitHub:** `https://github.com/overnightmvp/FMM.git`
 **Live site:** `https://fortmyerslaboronlymovers.com/`
 
@@ -17,26 +17,27 @@
 # Preview locally
 open landing-page/index.html
 
-# Deploy to Netlify (drag & drop)
-# → netlify.com/drop → drag fort-myers-movers/ folder
-
-# Push to GitHub
-git init
-git remote add origin https://github.com/overnightmvp/FMM.git
+# Push to GitHub (auto-deploys to GitHub Pages)
 git add .
-git commit -m "feat: initial AI-optimized site build"
-git push -u origin main
+git commit -m "feat: description"
+git push origin main
+# Live at: https://overnightmvp.github.io/FMM/
+
+# Deploy to Netlify (drag & drop alternative)
+# → netlify.com/drop → drag fort-myers-movers/ folder
 ```
+
+See `CLAUDE.md` for Claude Code session guidance.
 
 ---
 
-## Before Going Live: 3 Required Replacements
+## Before Going Live: 4 Required Replacements
 
 1. **`landing-page/assets/movers.js`** line 9:
    ```
    FORM_ENDPOINT: 'https://formspree.io/f/YOUR_FORM_ID'
    ```
-   → Replace `YOUR_FORM_ID` with actual Formspree form ID
+   → Replace `YOUR_FORM_ID` with actual Formspree form ID (all forms fail silently until fixed)
 
 2. **`landing-page/index.html`** line 42 (GTM):
    ```
@@ -48,7 +49,13 @@ git push -u origin main
    ```
    GA4_ID: 'G-XXXXXXXXXX'
    ```
-   → Replace with actual GA4 Measurement ID
+   → Replace with actual GA4 Measurement ID (zero tracking until fixed)
+
+4. **`landing-page/assets/movers.js`** line 10:
+   ```
+   PHONE_NUMBER: '(904) 479-8844'
+   ```
+   → (904) is Jacksonville area code — Fort Myers is **(239)**. Get a Google Voice 239 number.
 
 See `systems/launch-checklist.md` for full pre-launch verification.
 
@@ -87,10 +94,14 @@ fort-myers-movers/
 │   ├── launch-checklist.md               ← Pre-launch verification steps
 │   └── pricing-guide.md                  ← Rate card + contractor pricing
 ├── docs/
+│   ├── design-system.md                  ← CSS token reference — all variables + components
+│   ├── brand-system.html                 ← Visual brand guide — open in browser
 │   ├── AI-VISIBILITY-STRATEGY.md         ← llm.txt / robots.txt / Schema.org playbook
 │   ├── SEO-CONTENT-STRATEGY.md           ← Keyword targets + content calendar
 │   ├── market-intel.md                   ← Competitor analysis + market data
 │   └── next-steps-roadmap.md             ← Week 1 → Month 3 action plan
+├── .planning/
+│   └── todos/                            ← GSD task tracking (pending/ and done/)
 └── ads/                                  ← (future: facebook-strategy.md, google-ads-strategy.md)
 ```
 
