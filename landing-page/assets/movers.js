@@ -1,5 +1,5 @@
 /* ===== FORT MYERS LABOR ONLY MOVERS — JS =====
-   Form handling · Quote calculator · GA4 analytics · FAQ accordion
+   Multi-step quote form · GA4 analytics · FAQ accordion
    ============================================================== */
 
 'use strict';
@@ -38,32 +38,94 @@ let state = {
 
 /* ===== DOM READY ===== */
 document.addEventListener('DOMContentLoaded', () => {
-  initCalculator();
-  initLeadForm();
+  initMultiStepForm();
   initFAQ();
   initScrollAnimations();
   initPhoneLinks();
+  initMobileCTABar();
   trackPageView();
 });
 
-/* ===== QUOTE CALCULATOR ===== */
-function initCalculator() {
-  const bedroomBtns = document.querySelectorAll('.bedroom-btn');
-  const addonItems  = document.querySelectorAll('.addon-item');
+/* ===== PRICE CALCULATION ===== */
+function calculateTotal() {
+  const pricing = PRICING.bedrooms[state.selectedBedrooms];
+  let total = pricing.base;
+  state.selectedAddons.forEach(key => { total += PRICING.addons[key].price; });
+  return total;
+}
 
-  // Bedroom selection
-  bedroomBtns.forEach(btn => {
+function updatePriceDisplay() {
+  const pricing = PRICING.bedrooms[state.selectedBedrooms];
+  const total   = calculateTotal();
+
+  // Update all price estimate displays (step 1 card + hero card)
+  document.querySelectorAll('.price-est-value').forEach(el => {
+    el.textContent = `$${total}`;
+  });
+
+  // Update hero card price if present
+  const heroPrice = document.getElementById('hero-price');
+  if (heroPrice) heroPrice.textContent = `$${total}`;
+
+  // Update step-2 breakdown
+  const breakdownEl = document.getElementById('price-breakdown');
+  if (breakdownEl) {
+    const lines = [];
+    lines.push({ label: `Base (${pricing.movers} movers, ${pricing.hours} hrs)`, amount: pricing.base });
+    state.selectedAddons.forEach(key => {
+      lines.push({ label: PRICING.addons[key].label, amount: PRICING.addons[key].price });
+    });
+    const lineHTML = lines.map(l => `
+      <div class="price-line">
+        <span>${l.label}</span>
+        <span>$${l.amount}</span>
+      </div>`).join('');
+    breakdownEl.innerHTML = lineHTML + `
+      <div class="price-line total">
+        <span>Total Estimate</span>
+        <span>$${total}</span>
+      </div>`;
+  }
+}
+
+/* ===== MULTI-STEP FORM ===== */
+function initMultiStepForm() {
+  const form = document.getElementById('multistep-form');
+  if (!form) return;
+
+  let currentStep = 1;
+
+  function goToStep(n) {
+    // Update step dots
+    document.querySelectorAll('.step-dot').forEach((dot, i) => {
+      dot.classList.remove('active', 'done');
+      if (i + 1 < n)  dot.classList.add('done');
+      if (i + 1 === n) dot.classList.add('active');
+    });
+    // Show correct step panel
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    const step = document.getElementById(`step-${n}`);
+    if (step) step.classList.add('active');
+    currentStep = n;
+    updatePriceDisplay();
+  }
+
+  // Bedroom selection — sync ALL bedroom-btn elements (hero card + step 1)
+  document.querySelectorAll('.bedroom-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       state.selectedBedrooms = btn.dataset.bedrooms;
-      bedroomBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updatePrice();
+      // Activate matching buttons everywhere, deactivate others
+      document.querySelectorAll(`.bedroom-btn[data-bedrooms="${btn.dataset.bedrooms}"]`)
+        .forEach(b => b.classList.add('active'));
+      document.querySelectorAll(`.bedroom-btn:not([data-bedrooms="${btn.dataset.bedrooms}"])`)
+        .forEach(b => b.classList.remove('active'));
+      updatePriceDisplay();
       trackEvent('calculator_bedroom_select', { bedrooms: state.selectedBedrooms });
     });
   });
 
   // Addon toggles
-  addonItems.forEach(item => {
+  document.querySelectorAll('.addon-item').forEach(item => {
     item.addEventListener('click', () => {
       const key = item.dataset.addon;
       if (state.selectedAddons.has(key)) {
@@ -75,84 +137,57 @@ function initCalculator() {
         item.classList.add('selected');
         item.querySelector('.addon-check').innerHTML = '✓';
       }
-      updatePrice();
+      updatePriceDisplay();
       trackEvent('calculator_addon_toggle', { addon: key, selected: state.selectedAddons.has(key) });
     });
   });
 
-  // Set default active state
-  const defaultBtn = document.querySelector('[data-bedrooms="2"]');
-  if (defaultBtn) defaultBtn.classList.add('active');
-
-  updatePrice();
-}
-
-function updatePrice() {
-  const pricing  = PRICING.bedrooms[state.selectedBedrooms];
-  let total      = pricing.base;
-  let addonTotal = 0;
-  const lines    = [];
-
-  lines.push({ label: `Base (${pricing.movers} movers, ${pricing.hours} hrs)`, amount: pricing.base });
-
-  state.selectedAddons.forEach(key => {
-    const addon = PRICING.addons[key];
-    addonTotal += addon.price;
-    lines.push({ label: addon.label, amount: addon.price });
+  // Step navigation buttons
+  document.getElementById('next-1')?.addEventListener('click', () => {
+    goToStep(2);
+    trackEvent('multistep_next', { from: 1 });
+  });
+  document.getElementById('next-2')?.addEventListener('click', () => {
+    goToStep(3);
+    trackEvent('multistep_next', { from: 2 });
+  });
+  document.getElementById('back-2')?.addEventListener('click', () => {
+    goToStep(1);
+    trackEvent('multistep_back', { to: 1 });
+  });
+  document.getElementById('back-3')?.addEventListener('click', () => {
+    goToStep(2);
+    trackEvent('multistep_back', { to: 2 });
   });
 
-  total += addonTotal;
-
-  // Update breakdown
-  const breakdownEl = document.getElementById('price-breakdown');
-  if (breakdownEl) {
-    const lineHTML = lines.map(l => `
-      <div class="price-line">
-        <span>${l.label}</span>
-        <span>$${l.amount}</span>
-      </div>`).join('');
-    breakdownEl.innerHTML = lineHTML + `
-      <div class="price-line total">
-        <span>Total Estimate</span>
-        <span id="price-total">$${total}</span>
-      </div>`;
-  }
-
-  // Update hero card if present
-  const heroPrice = document.getElementById('hero-price');
-  if (heroPrice) heroPrice.textContent = `$${total}`;
-}
-
-/* ===== LEAD FORM ===== */
-function initLeadForm() {
-  const forms = document.querySelectorAll('.lead-form');
-
-  forms.forEach(form => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      await handleFormSubmit(form);
-    });
+  // Form submit (step 3)
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    await handleFormSubmit(form);
   });
+
+  // Set default bedroom active state (2 bedrooms)
+  document.querySelectorAll('[data-bedrooms="2"]').forEach(b => b.classList.add('active'));
+
+  goToStep(1);
 }
 
+/* ===== FORM SUBMISSION ===== */
 async function handleFormSubmit(form) {
   const btn = form.querySelector('[type="submit"]');
   const originalText = btn.textContent;
 
-  // Validate
   if (!validateForm(form)) return;
 
-  // Loading state
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  const data = new FormData(form);
+  const data    = new FormData(form);
   const payload = Object.fromEntries(data.entries());
 
-  // Add calculator data
-  const pricing = PRICING.bedrooms[state.selectedBedrooms];
-  payload.bedrooms      = state.selectedBedrooms;
-  payload.addons        = Array.from(state.selectedAddons).join(', ') || 'None';
+  // Attach pricing state
+  payload.bedrooms        = state.selectedBedrooms;
+  payload.addons          = Array.from(state.selectedAddons).join(', ') || 'None';
   payload.estimated_price = calculateTotal();
 
   try {
@@ -169,25 +204,14 @@ async function handleFormSubmit(form) {
       throw new Error('Server error');
     }
   } catch (err) {
-    // Graceful fallback — show phone number
     showFormError(form, btn, originalText);
     trackEvent('form_error', { error: err.message });
   }
 }
 
-function calculateTotal() {
-  const pricing = PRICING.bedrooms[state.selectedBedrooms];
-  let total = pricing.base;
-  state.selectedAddons.forEach(key => { total += PRICING.addons[key].price; });
-  return total;
-}
-
 function validateForm(form) {
   let valid = true;
-  const required = form.querySelectorAll('[required]');
-
-  required.forEach(field => {
-    const group = field.closest('.form-group');
+  form.querySelectorAll('[required]').forEach(field => {
     if (!field.value.trim()) {
       field.style.borderColor = 'var(--color-warning)';
       valid = false;
@@ -196,7 +220,6 @@ function validateForm(form) {
     }
   });
 
-  // Phone format validation
   const phoneField = form.querySelector('[name="phone"]');
   if (phoneField && phoneField.value) {
     const cleaned = phoneField.value.replace(/\D/g, '');
@@ -210,12 +233,13 @@ function validateForm(form) {
 }
 
 function showFormSuccess(form) {
-  const successEl = form.closest('.form-wrap')?.querySelector('.form-success')
-    || form.parentElement.querySelector('.form-success');
-
-  if (successEl) {
-    form.style.display = 'none';
-    successEl.classList.add('visible');
+  const wrap = form.closest('.multistep-wrap');
+  if (wrap) {
+    const progress = wrap.querySelector('.step-progress');
+    if (progress) progress.style.display = 'none';
+    wrap.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
+    const successEl = wrap.querySelector('.form-success');
+    if (successEl) successEl.classList.add('visible');
   } else {
     form.innerHTML = `
       <div class="form-success visible">
@@ -231,8 +255,7 @@ function showFormError(form, btn, originalText) {
   btn.textContent = originalText;
   btn.disabled = false;
 
-  const existingError = form.querySelector('.form-error-msg');
-  if (!existingError) {
+  if (!form.querySelector('.form-error-msg')) {
     const msg = document.createElement('p');
     msg.className = 'form-error-msg';
     msg.style.cssText = 'color:var(--color-warning);font-size:var(--font-size-sm);text-align:center;margin-top:12px;';
@@ -254,15 +277,32 @@ function initPhoneLinks() {
   });
 }
 
+/* ===== STICKY MOBILE CTA BAR ===== */
+function initMobileCTABar() {
+  const bar = document.querySelector('.mobile-cta-bar');
+  if (!bar) return;
+
+  document.body.classList.add('has-mobile-bar');
+
+  const formSection = document.getElementById('get-quote');
+  if (formSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        // Hide bar when quote form is visible; show it otherwise
+        bar.style.display = entry.isIntersecting ? 'none' : '';
+      });
+    }, { threshold: 0.2 });
+    observer.observe(formSection);
+  }
+}
+
 /* ===== FAQ ACCORDION ===== */
 function initFAQ() {
   document.querySelectorAll('.faq-item').forEach(item => {
     const btn = item.querySelector('.faq-question');
     btn.addEventListener('click', () => {
       const isOpen = item.classList.contains('open');
-      // Close all
       document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      // Open clicked (unless it was already open)
       if (!isOpen) {
         item.classList.add('open');
         trackEvent('faq_open', { question: btn.textContent.trim().slice(0, 60) });
@@ -298,7 +338,6 @@ document.addEventListener('click', (e) => {
   const target = document.querySelector(link.getAttribute('href'));
   if (target) {
     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    // Track CTA click
     trackEvent('cta_click', { target: link.getAttribute('href'), text: link.textContent.trim() });
   }
 });
@@ -321,7 +360,6 @@ function trackEvent(eventName, params = {}) {
 }
 
 function trackLead(formData) {
-  // GA4 conversion event — $75 lead value
   trackEvent('generate_lead', {
     currency: 'USD',
     value: CONFIG.LEAD_VALUE,
@@ -330,7 +368,6 @@ function trackLead(formData) {
     estimated_price: formData.estimated_price || calculateTotal(),
   });
 
-  // Also fire standard conversion
   trackEvent('conversion', {
     send_to: CONFIG.GA4_ID,
     value: CONFIG.LEAD_VALUE,
