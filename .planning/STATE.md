@@ -3,11 +3,11 @@
 ## Current Position
 
 Phase: 01 of 1 (01-fmm-docs-dashboard-boilerplate)
-Plan: 03 of 4 in phase (01-01 complete, 01-02 complete, 01-03 complete, 01-04 pending)
-Status: In progress
-Last activity: 2026-02-13 — Completed 01-03-PLAN.md (operations dashboard)
+Plan: 04 of 4 in phase (01-01 complete, 01-02 complete, 01-03 complete, 01-04 complete)
+Status: Phase complete
+Last activity: 2026-02-13 — Completed 01-04-PLAN.md (new city onboarding boilerplate)
 
-Progress: ███░ 3/4 plans complete (75%)
+Progress: ████ 4/4 plans complete (100%)
 
 ## Accumulated Decisions
 
@@ -23,6 +23,10 @@ Progress: ███░ 3/4 plans complete (75%)
 | D8 | 01-02 | Template 3 reframed as slow-season capacity fill | Tier 3 movers have marketing — real pain is dead weeks with crew on payroll |
 | D9 | 01-03 | Dashboard uses movers.css tokens (#1e3a8a, #f97316) not HVAC source colors | Consistent with site aesthetic |
 | D10 | 01-03 | localStorage keys prefixed fmm-task-N | Avoids collision with other dashboards in workspace |
+| D11 | 01-04 | Go/No-Go scorecard requires score ≥ 7/10 to proceed to technical setup | Prevents wasted setup work on markets that don't fit the model; 2-hour research saves 2 weeks |
+| D12 | 01-04 | Expansion city priority: Tampa → Charlotte → Austin → Nashville | Tampa for FL licensing/snowbird overlap; Charlotte for non-snowbird model validation |
+| D13 | 01-04 | Snowbird vs. non-snowbird seasonal model bifurcated explicitly in boilerplate | Fort Myers peak (Nov-Apr) is inverted vs. Charlotte/Austin (Apr-Aug); operator must choose consciously |
+| D14 | 01-04 | 116 [PLACEHOLDER] markers throughout boilerplate | Removes guesswork; every city-specific variable explicitly flagged for local research |
 
 ## Blockers / Concerns
 
@@ -36,16 +40,15 @@ Progress: ███░ 3/4 plans complete (75%)
 | 01-01 | Operational Docs | docs/FMM-90-minute-execution.md + systems/success-metrics.md created |
 | 01-02 | Contractor Outreach Docs | docs/contractor-research.md (10 prospects, Tier 1/2/3) + docs/email-templates.md (3 primary + 2 follow-up) |
 | 01-03 | Operations Dashboard | omvp-fmm-dashboard.html: 6-card hub with localStorage checklist, doc links, KPIs, seasonal calendar |
+| 01-04 | New City Boilerplate | docs/BOILERPLATE-NEW-CITY-ONBOARDING.md: 6-section replication guide, Go/No-Go scorecard, Tampa→Charlotte→Austin→Nashville expansion framework |
 
 ## Pending Plans
 
-| Plan | Name | Status |
-|------|------|--------|
-| 01-04 | (check 01-04-PLAN.md) | Pending |
+None — Phase 01 complete.
 
 ## Session Continuity
 
-Last session: 2026-02-13T01:54:48Z
-Stopped at: Completed 01-03-PLAN.md
+Last session: 2026-02-13T01:52:02Z
+Stopped at: Completed 01-04-PLAN.md (final plan in Phase 01)
 Resume file: None
-Next plan: .planning/phases/01-fmm-docs-dashboard-boilerplate/01-04-PLAN.md
+Next plan: Phase 01 complete. Begin execution when new phase is planned.
