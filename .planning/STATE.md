@@ -3,11 +3,12 @@
 ## Current Position
 
 Phase: 03 of 3 (03-conversion-optimization)
-Plan: 2 of 2 in phase complete (03-01 complete, 03-02 complete)
-Status: In progress (03-02 complete; check 03-01 status separately — parallel execution)
-Last activity: 2026-02-16 — Completed 03-02-PLAN.md (Dashboard emoji audit: all 52 links now have emoji prefixes)
+Plan: 2 of 4 in phase complete (03-01 complete, 03-02 complete)
+Status: In progress
+Last activity: 2026-02-15 — Completed 03-01-PLAN.md (CSS targeted fixes: sticky trust column + fade-up audit)
+           2026-02-16 — Completed 03-02-PLAN.md (Dashboard emoji audit: all 52 links now have emoji prefixes)
 
-Progress: ████████████ 12/12 plans complete (100%)
+Progress: ███████████░░░ 11/14 plans complete (79%)
 
 ## Accumulated Decisions
 
@@ -36,6 +37,8 @@ Progress: ████████████ 12/12 plans complete (100%)
 | D21 | 02-03 | Stats bar 4.9★ split: yellow ★ inline span + orange number text | Yellow star color distinction; orange number aligns with var(--color-accent) system |
 | D22 | 02-04 | Old multistep form replaced (not added alongside) on all 6 content pages | Pages already had id="get-quote" multi-step form — duplicate IDs would break JS targeting |
 | D23 | 02-04 | loading-unloading-help.html uses "Loading From / Delivering To" field labels | Context-appropriate copy for loading/unloading service vs. standard moving service |
+| D24 | 03-01 | align-self:start required alongside position:sticky on .quote-layout-trust grid child | CSS Grid stretch prevents sticky from activating; align-self:start sizes column to content height |
+| D25 | 03-01 | Fade-up audit: no CSS overrides found on .step-card — no changes needed for fix 2 | .step-card has no opacity/transform properties that conflict with .fade-up specificity |
 
 ## Blockers / Concerns
 
@@ -55,15 +58,19 @@ Progress: ████████████ 12/12 plans complete (100%)
 | 02-01 | CSS/JS Foundation | movers.css: unified button system, orange step numbers, 15+ form CSS classes; movers.js: initSinglePageForm() with live pricing + Formspree submission |
 | 02-03 | Landing Page Overhaul | landing-page/index.html: 9 UI/CRO changes — single-page quote form (fmm- IDs, quote-layout grid), trust badges, simplified marquee, emoji-first step cards, stats bar, CTAs with emojis |
 | 02-04 | Content Pages Global UX | All 6 content pages: replaced multistep form with embedded single-page fmm- form; added journey-timeline Start to Finish section; updated all CTA links to #get-quote (same page) |
+| 03-01 | CSS Targeted Fixes | movers.css: @media (min-width:769px) sticky trust column on .quote-layout-trust; fade-up audit confirmed no .step-card overrides |
 | 03-02 | Dashboard Emoji Audit | omvp-fmm-dashboard.html: 21 links updated with semantic emoji prefixes; all 52 links now have emojis (0 without) |
 
 ## Pending Plans
 
-03-01 — check separately (parallel plan, may still be in progress).
+| Plan | Name | Status |
+|------|------|--------|
+| 03-03 | CRO Micro-Fixes | Pending |
+| 03-04 | Final QA + Go-Live Checklist | Pending |
 
 ## Session Continuity
 
-Last session: 2026-02-16T00:05:00Z
-Stopped at: Completed 03-02-PLAN.md (Dashboard emoji audit)
+Last session: 2026-02-15T23:09:47Z (03-01), 2026-02-16T00:05:00Z (03-02)
+Stopped at: 03-01 and 03-02 both complete
 Resume file: None
-Next plan: Verify 03-01 completion; then all phases complete
+Next plan: 03-03-PLAN.md
