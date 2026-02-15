@@ -3,11 +3,11 @@
 ## Current Position
 
 Phase: 02 of 2 (02-landing-page-ux-overhaul)
-Plan: 02 of 4 in phase (02-01 in progress, 02-02 complete, 02-03 pending, 02-04 pending)
+Plan: 01 and 02 of 4 in phase complete (02-01 complete, 02-02 complete, 02-03 pending, 02-04 pending)
 Status: In progress
-Last activity: 2026-02-15 — Completed 02-02-PLAN.md (dashboard expansion with tools + file inventory)
+Last activity: 2026-02-15 — Completed 02-01-PLAN.md (CSS/JS foundation: button system, step cards, single-page form)
 
-Progress: ██████░░░░ 6/10 plans complete (60%)
+Progress: ███████░░░ 7/10 plans complete (70%)
 
 ## Accumulated Decisions
 
@@ -28,6 +28,9 @@ Progress: ██████░░░░ 6/10 plans complete (60%)
 | D13 | 01-04 | Snowbird vs. non-snowbird seasonal model bifurcated explicitly in boilerplate | Fort Myers peak (Nov-Apr) is inverted vs. Charlotte/Austin (Apr-Aug); operator must choose consciously |
 | D14 | 01-04 | 116 [PLACEHOLDER] markers throughout boilerplate | Removes guesswork; every city-specific variable explicitly flagged for local research |
 | D15 | 02-02 | Tools section kept in both Card 6 quick-links AND new dedicated Tools & Accounts card | Card 6 preserves campaign context; dedicated card provides canonical single-source tool directory |
+| D16 | 02-01 | .btn-primary-xl size merged into .btn-primary (20px/40px padding, var(--font-size-lg)) | Single button size eliminates visual inconsistency; .btn-primary-xl retains width:100% for layout only |
+| D17 | 02-01 | step-number background changed to var(--color-accent) orange | Orange step numbers create visual hierarchy distinction from navy card borders |
+| D18 | 02-01 | initSinglePageForm() uses existing PRICING object — no data duplication | Single source of truth for pricing; changing PRICING updates both form types simultaneously |
 
 ## Blockers / Concerns
 
@@ -43,18 +46,18 @@ Progress: ██████░░░░ 6/10 plans complete (60%)
 | 01-03 | Operations Dashboard | omvp-fmm-dashboard.html: 6-card hub with localStorage checklist, doc links, KPIs, seasonal calendar |
 | 01-04 | New City Boilerplate | docs/BOILERPLATE-NEW-CITY-ONBOARDING.md: 6-section replication guide, Go/No-Go scorecard, Tampa→Charlotte→Austin→Nashville expansion framework |
 | 02-02 | Dashboard Expansion | omvp-fmm-dashboard.html: GitHub/Netlify/brand-system links added; Tools & Accounts card (7 tools, 2-col grid); Site Files card (12 HTML + 9 MD) |
+| 02-01 | CSS/JS Foundation | movers.css: unified button system, orange step numbers, 15+ form CSS classes; movers.js: initSinglePageForm() with live pricing + Formspree submission |
 
 ## Pending Plans
 
 | Plan | Name | Status |
 |------|------|--------|
-| 02-01 | Landing Page UX Overhaul | In progress (parallel with 02-02) |
-| 02-03 | Content Pages | Pending |
+| 02-03 | Content Pages | Pending (depends on 02-01) |
 | 02-04 | Blog Hub | Pending |
 
 ## Session Continuity
 
-Last session: 2026-02-15T14:04:41Z
-Stopped at: Completed 02-02-PLAN.md (dashboard expansion)
+Last session: 2026-02-15T14:07:29Z
+Stopped at: Completed 02-01-PLAN.md (CSS/JS foundation)
 Resume file: None
-Next plan: 02-03 (after 02-01 completes)
+Next plan: 02-03 (02-01 and 02-02 both complete)
