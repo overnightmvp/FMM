@@ -36,9 +36,156 @@ let state = {
   selectedAddons: new Set(),
 };
 
+/* ===== SINGLE-PAGE QUOTE FORM ===== */
+function initSinglePageForm() {
+  const bedroomSel = document.getElementById('fmm-bedrooms');
+  const moversDisplay = document.getElementById('fmm-movers-count');
+  const hoursDisplay = document.getElementById('fmm-hours-count');
+  const basePrice = document.getElementById('fmm-base-price');
+  const totalPrice = document.getElementById('fmm-total-price');
+  const priceDesc = document.getElementById('fmm-price-desc');
+  const submitBtn = document.getElementById('fmm-submit-btn');
+  const successEl = document.getElementById('fmm-form-success');
+  const errorEl = document.getElementById('fmm-form-error');
+  const form = document.getElementById('fmm-quote-form');
+
+  let currentAddons = {};
+
+  function getBedroomCount() {
+    return bedroomSel ? bedroomSel.value : '2';
+  }
+
+  function calcTotal() {
+    const br = getBedroomCount();
+    const base = PRICING.bedrooms[br] ? PRICING.bedrooms[br].base : 400;
+    let addonsTotal = 0;
+    Object.entries(currentAddons).forEach(([key, val]) => {
+      if (val && PRICING.addons[key]) addonsTotal += PRICING.addons[key].price;
+    });
+    return { base, addonsTotal, total: base + addonsTotal };
+  }
+
+  function updateDisplay() {
+    const br = getBedroomCount();
+    const data = PRICING.bedrooms[br] || PRICING.bedrooms['2'];
+    const { base, addonsTotal, total } = calcTotal();
+
+    if (moversDisplay) moversDisplay.textContent = data.movers + ' Movers';
+    if (hoursDisplay) hoursDisplay.textContent = data.hours + ' Hours';
+    if (priceDesc) priceDesc.textContent = 'Base (' + data.label + ', ' + data.movers + ' movers, ' + data.hours + ' hrs)';
+    if (basePrice) basePrice.textContent = '$' + base;
+    if (totalPrice) totalPrice.textContent = '$' + total;
+
+    // sync hidden fields
+    const hBedrooms = document.getElementById('fmm-h-bedrooms');
+    const hTotal = document.getElementById('fmm-h-total');
+    if (hBedrooms) hBedrooms.value = br;
+    if (hTotal) hTotal.value = '$' + total;
+  }
+
+  if (bedroomSel) {
+    bedroomSel.addEventListener('change', updateDisplay);
+    updateDisplay();
+  }
+
+  // Addon checkboxes
+  document.querySelectorAll('.upgrade-checkbox').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      const addon = this.dataset.addon;
+      currentAddons[addon] = this.checked;
+      updateDisplay();
+      // update addons hidden field
+      const selected = Object.entries(currentAddons)
+        .filter(([k, v]) => v)
+        .map(([k]) => PRICING.addons[k] ? PRICING.addons[k].label + ' ($' + PRICING.addons[k].price + ')' : k)
+        .join(', ');
+      const hAddons = document.getElementById('fmm-h-addons');
+      if (hAddons) hAddons.value = selected;
+    });
+  });
+
+  // Sync visible fields to hidden form fields on submit
+  function syncHiddenFields() {
+    const fields = ['name', 'email', 'phone', 'date', 'from', 'to'];
+    fields.forEach(function(f) {
+      const visible = document.getElementById('fmm-' + f);
+      const hidden = document.getElementById('fmm-h-' + f);
+      if (visible && hidden) hidden.value = visible.value;
+    });
+    const moveTypeSel = document.getElementById('fmm-move-type');
+    const hMoveType = document.getElementById('fmm-h-move-type');
+    if (moveTypeSel && hMoveType) hMoveType.value = moveTypeSel.value;
+  }
+
+  function validateSingleForm() {
+    const required = ['fmm-name', 'fmm-email', 'fmm-phone', 'fmm-date', 'fmm-from', 'fmm-to'];
+    let valid = true;
+    required.forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const empty = !el.value.trim();
+        el.classList.toggle('error', empty);
+        if (empty) valid = false;
+      }
+    });
+    // Phone validation
+    const phoneEl = document.getElementById('fmm-phone');
+    if (phoneEl && phoneEl.value) {
+      const digits = phoneEl.value.replace(/\D/g, '');
+      if (digits.length < 10) {
+        phoneEl.classList.add('error');
+        valid = false;
+      }
+    }
+    return valid;
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function() {
+      if (!validateSingleForm()) {
+        submitBtn.textContent = 'Please fill in all fields 👆';
+        setTimeout(function() { submitBtn.textContent = 'Get My Free Quote 🚚'; }, 2000);
+        return;
+      }
+      syncHiddenFields();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending... ⏳';
+
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res) {
+        if (res.ok) {
+          if (successEl) { successEl.style.display = 'block'; }
+          form.style.display = 'none';
+          // scroll to success
+          if (successEl) successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // GA4 tracking
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'lead_generated', {
+              event_category: 'form',
+              event_label: 'quote_form_single_page',
+              value: 75
+            });
+          }
+        } else {
+          throw new Error('Form submission failed');
+        }
+      }).catch(function() {
+        if (errorEl) { errorEl.style.display = 'block'; }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My Free Quote 🚚';
+      });
+    });
+  }
+}
+
 /* ===== DOM READY ===== */
 document.addEventListener('DOMContentLoaded', () => {
   initMultiStepForm();
+  if (document.getElementById('fmm-bedrooms')) { initSinglePageForm(); }
   initFAQ();
   initScrollAnimations();
   initPhoneLinks();
