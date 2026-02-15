@@ -3,11 +3,11 @@
 ## Current Position
 
 Phase: 02 of 2 (02-landing-page-ux-overhaul)
-Plan: 3 of 4 in phase complete (02-01 complete, 02-02 complete, 02-03 complete, 02-04 pending)
-Status: In progress
-Last activity: 2026-02-15 — Completed 02-03-PLAN.md (Landing page UI/CRO overhaul: single-page form, trust badges, step cards, stats bar, all CTAs)
+Plan: 4 of 4 in phase complete (02-01 complete, 02-02 complete, 02-03 complete, 02-04 complete)
+Status: Phase complete
+Last activity: 2026-02-15 — Completed 02-04-PLAN.md (Content pages: embedded quote form + Start to Finish section on all 6 pages)
 
-Progress: ████████░░ 8/10 plans complete (80%)
+Progress: ██████████ 10/10 plans complete (100%)
 
 ## Accumulated Decisions
 
@@ -34,12 +34,14 @@ Progress: ████████░░ 8/10 plans complete (80%)
 | D19 | 02-03 | Trust marquee simplified to single repeated string vs. varied items | Plan spec: focused 'Thumbtack Top Pro · 247+ Verified Reviews' claim > scattered rotating items |
 | D20 | 02-03 | Step card order: emoji first, step-number second (top to bottom) | With flex-direction:column from 02-01 CSS, visual reads icon then orange circle number |
 | D21 | 02-03 | Stats bar 4.9★ split: yellow ★ inline span + orange number text | Yellow star color distinction; orange number aligns with var(--color-accent) system |
+| D22 | 02-04 | Old multistep form replaced (not added alongside) on all 6 content pages | Pages already had id="get-quote" multi-step form — duplicate IDs would break JS targeting |
+| D23 | 02-04 | loading-unloading-help.html uses "Loading From / Delivering To" field labels | Context-appropriate copy for loading/unloading service vs. standard moving service |
 
 ## Blockers / Concerns
 
 - All Tier 1–2 contractor contact info is [RESEARCH NEEDED] — manual research required before outreach can begin
 - Email templates use placeholder social proof ([Company A], [Company B]) — real results needed once first contractor signs
-- Formspree endpoint `YOUR_FORM_ID` placeholder in landing-page/index.html — replace before go-live
+- Formspree endpoint `YOUR_FORM_ID` placeholder in all 7 HTML files (landing page + 6 content pages) — replace before go-live
 
 ## Completed Plans
 
@@ -51,17 +53,16 @@ Progress: ████████░░ 8/10 plans complete (80%)
 | 01-04 | New City Boilerplate | docs/BOILERPLATE-NEW-CITY-ONBOARDING.md: 6-section replication guide, Go/No-Go scorecard, Tampa→Charlotte→Austin→Nashville expansion framework |
 | 02-02 | Dashboard Expansion | omvp-fmm-dashboard.html: GitHub/Netlify/brand-system links added; Tools & Accounts card (7 tools, 2-col grid); Site Files card (12 HTML + 9 MD) |
 | 02-01 | CSS/JS Foundation | movers.css: unified button system, orange step numbers, 15+ form CSS classes; movers.js: initSinglePageForm() with live pricing + Formspree submission |
-| 02-03 | Landing Page Overhaul | landing-page/index.html: 9 UI/CRO changes — single-page quote form (fmm- IDs, quote-layout grid), ✅ trust badges, simplified marquee, emoji-first step cards, stats bar yellow/orange, CTAs with emojis |
+| 02-03 | Landing Page Overhaul | landing-page/index.html: 9 UI/CRO changes — single-page quote form (fmm- IDs, quote-layout grid), trust badges, simplified marquee, emoji-first step cards, stats bar, CTAs with emojis |
+| 02-04 | Content Pages Global UX | All 6 content pages: replaced multistep form with embedded single-page fmm- form; added journey-timeline Start to Finish section; updated all CTA links to #get-quote (same page) |
 
 ## Pending Plans
 
-| Plan | Name | Status |
-|------|------|--------|
-| 02-04 | Blog Hub | Pending |
+None — all 10 plans across both phases complete.
 
 ## Session Continuity
 
-Last session: 2026-02-15T14:12:15Z
-Stopped at: Completed 02-03-PLAN.md (Landing page UI/CRO overhaul)
+Last session: 2026-02-15T14:20:52Z
+Stopped at: Completed 02-04-PLAN.md (Content pages global UX changes)
 Resume file: None
-Next plan: 02-04 (Blog Hub)
+Next plan: All phases complete — project ready for go-live operations
