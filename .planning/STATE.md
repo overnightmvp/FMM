@@ -3,11 +3,11 @@
 ## Current Position
 
 Phase: 02 of 2 (02-landing-page-ux-overhaul)
-Plan: 01 and 02 of 4 in phase complete (02-01 complete, 02-02 complete, 02-03 pending, 02-04 pending)
+Plan: 3 of 4 in phase complete (02-01 complete, 02-02 complete, 02-03 complete, 02-04 pending)
 Status: In progress
-Last activity: 2026-02-15 — Completed 02-01-PLAN.md (CSS/JS foundation: button system, step cards, single-page form)
+Last activity: 2026-02-15 — Completed 02-03-PLAN.md (Landing page UI/CRO overhaul: single-page form, trust badges, step cards, stats bar, all CTAs)
 
-Progress: ███████░░░ 7/10 plans complete (70%)
+Progress: ████████░░ 8/10 plans complete (80%)
 
 ## Accumulated Decisions
 
@@ -31,11 +31,15 @@ Progress: ███████░░░ 7/10 plans complete (70%)
 | D16 | 02-01 | .btn-primary-xl size merged into .btn-primary (20px/40px padding, var(--font-size-lg)) | Single button size eliminates visual inconsistency; .btn-primary-xl retains width:100% for layout only |
 | D17 | 02-01 | step-number background changed to var(--color-accent) orange | Orange step numbers create visual hierarchy distinction from navy card borders |
 | D18 | 02-01 | initSinglePageForm() uses existing PRICING object — no data duplication | Single source of truth for pricing; changing PRICING updates both form types simultaneously |
+| D19 | 02-03 | Trust marquee simplified to single repeated string vs. varied items | Plan spec: focused 'Thumbtack Top Pro · 247+ Verified Reviews' claim > scattered rotating items |
+| D20 | 02-03 | Step card order: emoji first, step-number second (top to bottom) | With flex-direction:column from 02-01 CSS, visual reads icon then orange circle number |
+| D21 | 02-03 | Stats bar 4.9★ split: yellow ★ inline span + orange number text | Yellow star color distinction; orange number aligns with var(--color-accent) system |
 
 ## Blockers / Concerns
 
 - All Tier 1–2 contractor contact info is [RESEARCH NEEDED] — manual research required before outreach can begin
 - Email templates use placeholder social proof ([Company A], [Company B]) — real results needed once first contractor signs
+- Formspree endpoint `YOUR_FORM_ID` placeholder in landing-page/index.html — replace before go-live
 
 ## Completed Plans
 
@@ -47,17 +51,17 @@ Progress: ███████░░░ 7/10 plans complete (70%)
 | 01-04 | New City Boilerplate | docs/BOILERPLATE-NEW-CITY-ONBOARDING.md: 6-section replication guide, Go/No-Go scorecard, Tampa→Charlotte→Austin→Nashville expansion framework |
 | 02-02 | Dashboard Expansion | omvp-fmm-dashboard.html: GitHub/Netlify/brand-system links added; Tools & Accounts card (7 tools, 2-col grid); Site Files card (12 HTML + 9 MD) |
 | 02-01 | CSS/JS Foundation | movers.css: unified button system, orange step numbers, 15+ form CSS classes; movers.js: initSinglePageForm() with live pricing + Formspree submission |
+| 02-03 | Landing Page Overhaul | landing-page/index.html: 9 UI/CRO changes — single-page quote form (fmm- IDs, quote-layout grid), ✅ trust badges, simplified marquee, emoji-first step cards, stats bar yellow/orange, CTAs with emojis |
 
 ## Pending Plans
 
 | Plan | Name | Status |
 |------|------|--------|
-| 02-03 | Content Pages | Pending (depends on 02-01) |
 | 02-04 | Blog Hub | Pending |
 
 ## Session Continuity
 
-Last session: 2026-02-15T14:07:29Z
-Stopped at: Completed 02-01-PLAN.md (CSS/JS foundation)
+Last session: 2026-02-15T14:12:15Z
+Stopped at: Completed 02-03-PLAN.md (Landing page UI/CRO overhaul)
 Resume file: None
-Next plan: 02-03 (02-01 and 02-02 both complete)
+Next plan: 02-04 (Blog Hub)
