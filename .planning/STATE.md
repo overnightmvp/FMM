@@ -2,12 +2,12 @@
 
 ## Current Position
 
-Phase: 01 of 1 (01-fmm-docs-dashboard-boilerplate)
-Plan: 04 of 4 in phase (01-01 complete, 01-02 complete, 01-03 complete, 01-04 complete)
-Status: Phase complete
-Last activity: 2026-02-13 — Completed 01-04-PLAN.md (new city onboarding boilerplate)
+Phase: 02 of 2 (02-landing-page-ux-overhaul)
+Plan: 02 of 4 in phase (02-01 in progress, 02-02 complete, 02-03 pending, 02-04 pending)
+Status: In progress
+Last activity: 2026-02-15 — Completed 02-02-PLAN.md (dashboard expansion with tools + file inventory)
 
-Progress: ████ 4/4 plans complete (100%)
+Progress: ██████░░░░ 6/10 plans complete (60%)
 
 ## Accumulated Decisions
 
@@ -27,6 +27,7 @@ Progress: ████ 4/4 plans complete (100%)
 | D12 | 01-04 | Expansion city priority: Tampa → Charlotte → Austin → Nashville | Tampa for FL licensing/snowbird overlap; Charlotte for non-snowbird model validation |
 | D13 | 01-04 | Snowbird vs. non-snowbird seasonal model bifurcated explicitly in boilerplate | Fort Myers peak (Nov-Apr) is inverted vs. Charlotte/Austin (Apr-Aug); operator must choose consciously |
 | D14 | 01-04 | 116 [PLACEHOLDER] markers throughout boilerplate | Removes guesswork; every city-specific variable explicitly flagged for local research |
+| D15 | 02-02 | Tools section kept in both Card 6 quick-links AND new dedicated Tools & Accounts card | Card 6 preserves campaign context; dedicated card provides canonical single-source tool directory |
 
 ## Blockers / Concerns
 
@@ -41,14 +42,19 @@ Progress: ████ 4/4 plans complete (100%)
 | 01-02 | Contractor Outreach Docs | docs/contractor-research.md (10 prospects, Tier 1/2/3) + docs/email-templates.md (3 primary + 2 follow-up) |
 | 01-03 | Operations Dashboard | omvp-fmm-dashboard.html: 6-card hub with localStorage checklist, doc links, KPIs, seasonal calendar |
 | 01-04 | New City Boilerplate | docs/BOILERPLATE-NEW-CITY-ONBOARDING.md: 6-section replication guide, Go/No-Go scorecard, Tampa→Charlotte→Austin→Nashville expansion framework |
+| 02-02 | Dashboard Expansion | omvp-fmm-dashboard.html: GitHub/Netlify/brand-system links added; Tools & Accounts card (7 tools, 2-col grid); Site Files card (12 HTML + 9 MD) |
 
 ## Pending Plans
 
-None — Phase 01 complete.
+| Plan | Name | Status |
+|------|------|--------|
+| 02-01 | Landing Page UX Overhaul | In progress (parallel with 02-02) |
+| 02-03 | Content Pages | Pending |
+| 02-04 | Blog Hub | Pending |
 
 ## Session Continuity
 
-Last session: 2026-02-13T01:52:02Z
-Stopped at: Completed 01-04-PLAN.md (final plan in Phase 01)
+Last session: 2026-02-15T14:04:41Z
+Stopped at: Completed 02-02-PLAN.md (dashboard expansion)
 Resume file: None
-Next plan: Phase 01 complete. Begin execution when new phase is planned.
+Next plan: 02-03 (after 02-01 completes)
