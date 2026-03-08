@@ -2,13 +2,13 @@
 
 ## Current Position
 
-Phase: 03 of 3 (03-conversion-optimization)
-Plan: 2 of 4 in phase complete (03-01 complete, 03-02 complete)
-Status: In progress
-Last activity: 2026-02-15 — Completed 03-01-PLAN.md (CSS targeted fixes: sticky trust column + fade-up audit)
-           2026-02-16 — Completed 03-02-PLAN.md (Dashboard emoji audit: all 52 links now have emoji prefixes)
+Phase: 03 of 3 (03-conversion-optimization) — ✅ COMPLETE
+Plan: 4 of 4 in phase complete (03-01, 03-02, 03-03, 03-04 all done)
+Status: Complete — Ready for go-live (pending Formspree ID creation + phone verification)
+Last activity: 2026-02-16 — Completed 03-03 (landing page CRO: form reorder + city coverage + urgency copy)
+               2026-02-16 — Completed 03-04 (content page form IDs + push to production)
 
-Progress: ███████████░░░ 11/14 plans complete (79%)
+Progress: ██████████████ 14/14 plans complete (100%)
 
 ## Accumulated Decisions
 
@@ -39,12 +39,27 @@ Progress: ███████████░░░ 11/14 plans complete (79%)
 | D23 | 02-04 | loading-unloading-help.html uses "Loading From / Delivering To" field labels | Context-appropriate copy for loading/unloading service vs. standard moving service |
 | D24 | 03-01 | align-self:start required alongside position:sticky on .quote-layout-trust grid child | CSS Grid stretch prevents sticky from activating; align-self:start sizes column to content height |
 | D25 | 03-01 | Fade-up audit: no CSS overrides found on .step-card — no changes needed for fix 2 | .step-card has no opacity/transform properties that conflict with .fade-up specificity |
+| D26 | 03-03 | #get-quote section moved to position 2 (after hero/trust bar) | Maximizes above-fold form visibility; reduces scroll friction for conversion |
+| D27 | 03-03 | City coverage line added to hero: "Serving Fort Myers · Cape Coral · Naples · Bonita Springs · Estero" | Trust signal + SEO geographic keywords + mobile clarity |
+| D28 | 03-03 | FAQ answers trimmed to 2 sentences max (5 of 6 answers shortened) | Reduced noise; scannability improvement for mobile users |
+| D29 | 03-04 | Formspree form ID handling: placeholder REPLACE_WITH_FORMSPREE_ID + action comment on all 7 pages | Clear blocker indicator for go-live checklist; explicit action required instruction |
 
-## Blockers / Concerns
+## Blockers / Concerns — GO-LIVE CRITICAL
 
-- All Tier 1–2 contractor contact info is [RESEARCH NEEDED] — manual research required before outreach can begin
+**🔴 Form Submission Blocking Live Site:**
+- All 7 HTML pages (landing-page/index.html + 6 content-pages/*.html) use `REPLACE_WITH_FORMSPREE_ID` placeholder
+- ACTION: Go to https://formspree.io/forms, create a new form, copy the form ID, and replace `REPLACE_WITH_FORMSPREE_ID` in all 7 pages
+- Impact: Forms won't submit until this is done
+
+**🟡 Phone Number Area Code:**
+- Current phone (904) is Jacksonville, not Fort Myers — Southwest Florida uses (239) or (904) less common
+- Verify (904) 479-8844 is the correct business number before going live
+- Location: landing-page/index.html line 133, movers.js line 10, all content-pages/*, blog/* pages
+- Impact: Medium — works but credibility issue if wrong area code
+
+**⚪ Non-Critical Concerns:**
+- All Tier 1–2 contractor contact info is [RESEARCH NEEDED] — manual research required before outreach
 - Email templates use placeholder social proof ([Company A], [Company B]) — real results needed once first contractor signs
-- Formspree endpoint `YOUR_FORM_ID` placeholder in all 7 HTML files (landing page + 6 content pages) — replace before go-live
 
 ## Completed Plans
 
@@ -60,17 +75,18 @@ Progress: ███████████░░░ 11/14 plans complete (79%)
 | 02-04 | Content Pages Global UX | All 6 content pages: replaced multistep form with embedded single-page fmm- form; added journey-timeline Start to Finish section; updated all CTA links to #get-quote (same page) |
 | 03-01 | CSS Targeted Fixes | movers.css: @media (min-width:769px) sticky trust column on .quote-layout-trust; fade-up audit confirmed no .step-card overrides |
 | 03-02 | Dashboard Emoji Audit | omvp-fmm-dashboard.html: 21 links updated with semantic emoji prefixes; all 52 links now have emojis (0 without) |
-
-## Pending Plans
-
-| Plan | Name | Status |
-|------|------|--------|
-| 03-03 | CRO Micro-Fixes | Pending |
-| 03-04 | Final QA + Go-Live Checklist | Pending |
+| 03-03 | CRO Micro-Fixes | landing-page/index.html: #get-quote moved to position 2, city coverage in hero, urgency copy updated, FAQ trimmed |
+| 03-04 | Form ID Placeholder Fix | All 6 content-pages/*.html updated with REPLACE_WITH_FORMSPREE_ID placeholder + action comment; pushed to production
 
 ## Session Continuity
 
-Last session: 2026-02-15T23:09:47Z (03-01), 2026-02-16T00:05:00Z (03-02)
-Stopped at: 03-01 and 03-02 both complete
-Resume file: None
-Next plan: 03-03-PLAN.md
+Last session: 2026-02-16T06:30:00Z (03-03, 03-04, Phase 03 complete)
+Phase 03 Status: ✅ ALL PLANS COMPLETE
+All code pushed to production (git push origin main successful)
+Next action:
+- Operator: Create Formspree form at https://formspree.io/forms
+- Operator: Replace REPLACE_WITH_FORMSPREE_ID in all 7 HTML files with real form ID
+- Operator: Verify (904) area code is correct for business
+- Operator: Go live once above blockers cleared
+
+Resume file: None (Phase 03 complete, project in go-live hold state)
