@@ -14,7 +14,7 @@
 /* Inter 400 - Regular */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter-400.woff2') format('woff2');
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -23,7 +23,7 @@
 /* Inter 500 - Medium */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter-500.woff2') format('woff2');
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
 /* Inter 600 - Semibold */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter-600.woff2') format('woff2');
+  src: url('/fonts/Inter-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -41,7 +41,7 @@
 /* Inter 700 - Bold */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter-700.woff2') format('woff2');
+  src: url('/fonts/Inter-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -50,7 +50,7 @@
 /* Inter 800 - Extrabold */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/inter-800.woff2') format('woff2');
+  src: url('/fonts/Inter-ExtraBold.woff2') format('woff2');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
