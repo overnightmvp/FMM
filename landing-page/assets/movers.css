@@ -130,6 +130,16 @@ h1, h2, h3, h4, h5 {
 }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
+/* Focus states for accessibility (WCAG 2.1 AA) */
+.btn:focus-visible,
+.bedroom-btn:focus-visible,
+.upgrade-item:focus-visible,
+.faq-question:focus-visible,
+.area-card:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .btn-primary {
   background: var(--color-accent);
   color: #ffffff;
@@ -205,6 +215,9 @@ h1, h2, h3, h4, h5 {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 101;
 }
 .header-inner {
   display: flex;
@@ -324,7 +337,7 @@ h1, h2, h3, h4, h5 {
   padding: 11px 0;
   overflow: hidden;
   position: sticky;
-  top: 0;
+  top: 60px;
   z-index: 100;
 }
 .trust-marquee { overflow: hidden; white-space: nowrap; }
@@ -910,6 +923,17 @@ h1, h2, h3, h4, h5 {
   .hero-ctas { flex-direction: column; }
   .btn-primary { width: 100%; }
   .form-row { grid-template-columns: 1fr; }
+
+  /* Mobile UX: Touch targets and spacing */
+  .bedroom-btn {
+    padding: 16px 8px;
+    min-height: 48px;
+    font-size: 14px;
+  }
+  .section#get-quote,
+  .quote-layout {
+    padding-bottom: 100px;
+  }
   .areas-grid { grid-template-columns: 1fr; }
   .stats-bar { gap: 24px; }
   .bedroom-options { gap: 6px; }
@@ -1039,6 +1063,28 @@ h1, h2, h3, h4, h5 {
   padding: 0 0 16px;
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) transparent;
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .journey-timeline-wrap::before {
+    content: '← Swipe to see all steps →';
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+  }
+  .journey-timeline-wrap::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 48px;
+    bottom: 16px;
+    width: 60px;
+    background: linear-gradient(to left, var(--color-bg-alt), transparent);
+    pointer-events: none;
+  }
 }
 .journey-timeline {
   display: flex;
@@ -1195,7 +1241,7 @@ h1, h2, h3, h4, h5 {
 .form-input,
 .form-select {
   width: 100%;
-  padding: 14px 16px;
+  padding: 16px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: var(--font-size-base);
@@ -1203,6 +1249,7 @@ h1, h2, h3, h4, h5 {
   background: white;
   transition: border-color var(--transition);
   box-sizing: border-box;
+  min-height: 48px;
 }
 .form-input:focus,
 .form-select:focus {
