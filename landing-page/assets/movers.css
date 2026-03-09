@@ -246,6 +246,92 @@ h1, h2, h3, h4, h5 {
 }
 .header-phone:hover { color: var(--color-accent); }
 
+/* ===== AUTO-HIDE HEADER ON SCROLL ===== */
+.site-header {
+  transition: transform 0.3s ease-in-out;
+}
+
+.site-header.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Trust bar moves to top when header hidden */
+.trust-bar {
+  transition: top 0.3s ease-in-out;
+}
+
+.trust-bar.trust-bar-top {
+  top: 0;
+}
+
+/* ===== TRUST BAR LAYOUT (Split: marquee + CTAs) ===== */
+.trust-bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.trust-marquee {
+  flex: 1;
+  overflow: hidden;
+}
+
+/* CTA buttons in trust bar */
+.trust-bar-ctas {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.trust-cta-call,
+.trust-cta-quote {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.trust-cta-call {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.trust-cta-call:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.trust-cta-quote {
+  background: #fff;
+  color: var(--color-trust);
+  border: 1px solid #fff;
+}
+
+.trust-cta-quote:hover {
+  background: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+/* Mobile: Hide CTAs, keep marquee only */
+@media (max-width: 640px) {
+  .trust-bar-ctas {
+    display: none;
+  }
+  .trust-bar-inner {
+    padding: 0;
+  }
+}
+
 /* ===== HERO ===== */
 .hero {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);

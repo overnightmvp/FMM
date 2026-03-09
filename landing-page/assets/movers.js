@@ -190,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initPhoneLinks();
   initMobileCTABar();
+  initAutoHideHeader();
   trackPageView();
 });
 
@@ -441,6 +442,45 @@ function initMobileCTABar() {
     }, { threshold: 0.2 });
     observer.observe(formSection);
   }
+}
+
+/* ===== AUTO-HIDE HEADER ON SCROLL ===== */
+function initAutoHideHeader() {
+  const header = document.querySelector('.site-header');
+  const trustBar = document.querySelector('.trust-bar');
+
+  if (!header) return;
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const headerHeight = 60; // Header height in pixels
+
+  function updateHeader() {
+    const currentScrollY = window.scrollY;
+
+    // Scrolling down AND past header height
+    if (currentScrollY > lastScrollY && currentScrollY > headerHeight) {
+      header.classList.add('header-hidden');
+      if (trustBar) trustBar.classList.add('trust-bar-top');
+    }
+    // Scrolling up OR at top of page
+    else if (currentScrollY < lastScrollY || currentScrollY <= headerHeight) {
+      header.classList.remove('header-hidden');
+      if (trustBar) trustBar.classList.remove('trust-bar-top');
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 /* ===== FAQ ACCORDION ===== */
