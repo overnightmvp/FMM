@@ -1,0 +1,57 @@
+/* ===== SELF-HOSTED INTER FONTS =====
+   Download instructions: https://github.com/rsms/inter/releases
+   Download these files from Inter's releases and place in /fonts/ folder:
+   - inter-400.woff2 (Regular)
+   - inter-500.woff2 (Medium)
+   - inter-600.woff2 (Semibold)
+   - inter-700.woff2 (Bold)
+   - inter-800.woff2 (Extrabold)
+
+   Or use this command to download:
+   curl -L https://github.com/rsms/inter/releases/download/v4.0/Inter-4.0.zip && unzip it
+   =================================== */
+
+/* Inter 400 - Regular */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter 500 - Medium */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter 600 - Semibold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter 700 - Bold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Inter 800 - Extrabold */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
